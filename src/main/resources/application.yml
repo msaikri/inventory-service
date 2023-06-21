@@ -1,0 +1,10 @@
+spring:
+  data:
+    mongodb:
+      database: INVENTORY-INFO
+  mongodb:
+    data:
+      uri: mongodb://localhost:27017/INVENTORY-INFO
+      collection: INVENTORY
+server:
+  port: 8082
