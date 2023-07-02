@@ -1,16 +1,12 @@
 package com.codemindsinfo.inventoryservice.service;
 
-import com.codemindsinfo.inventoryservice.constants.InventoryConstants;
-import com.codemindsinfo.inventoryservice.model.Inventory;
 import com.codemindsinfo.inventoryservice.model.InventoryRequest;
+import com.codemindsinfo.inventoryservice.model.InventoryResponse;
 import com.codemindsinfo.inventoryservice.repository.InventoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
+import java.util.List;
 
 @Service
 public class InventoryServiceImpl implements InventoryService {
@@ -21,6 +17,11 @@ public class InventoryServiceImpl implements InventoryService {
     @Override
     public boolean isInStock(String skuCode) {
         return inventoryRepository.isInStock(skuCode);
+    }
+
+
+    public List<InventoryResponse> isInStock(List<String> skuCodes) {
+        return inventoryRepository.isInStock(skuCodes);
     }
 
     @Override
