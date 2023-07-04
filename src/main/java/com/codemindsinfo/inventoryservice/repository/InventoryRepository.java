@@ -4,13 +4,13 @@ import com.codemindsinfo.inventoryservice.constants.InventoryConstants;
 import com.codemindsinfo.inventoryservice.model.Inventory;
 import com.codemindsinfo.inventoryservice.model.InventoryRequest;
 import com.codemindsinfo.inventoryservice.model.InventoryResponse;
-import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -28,7 +28,7 @@ public class InventoryRepository {
         Inventory inventory = mongoTemplate.findOne(query, Inventory.class, InventoryConstants.INVENTORY_COLLECTION);
         return (Objects.nonNull(inventory)
                 && Objects.nonNull(inventory.getSkuCode())
-                && StringUtils.isNotEmpty(inventory.getSkuCode()));
+                && StringUtils.hasText(inventory.getSkuCode()));
     }
 
     public List<InventoryResponse> isInStock(List<String> skuCodes) {
